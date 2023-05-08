@@ -1,0 +1,14 @@
+{% for catigory in catigory1 %}
+<div class="single-wid-product">
+    <a href="{% url 'detail' catigory.slug %}"><img style="width:100px;height:100px;object-fit:cover;border-radius: 10%;" src="{{catigory.image.url}}" alt="" class="product-thumb"></a>
+    <h2><a href="{% url 'detail' catigory.slug %}">{{catigory.title}}</a></h2>
+
+    <div class="product-wid-price">
+        {% if catigory.new_price > 0 %}
+        <ins style="color:#800080;">DA{{catigory.new_price|floatformat:'2'}}</ins> <del>DA {{catigory.price|floatformat:'2'}}</del>
+        {% else %}
+        <ins style="color:#800080;">DA{{catigory.price|floatformat:'2'}}</ins>
+        {% endif %}
+    </div>                            
+</div>
+{% endfor %}

@@ -1,0 +1,573 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+
+{% block title %}{{single_product.title}}{% endblock title %}
+
+
+
+  
+
+
+
+    
+
+    {% for msg in messages %}
+            <!-- success alert message -->
+            <div style="margin-top:2rem;" class="alert alert-success container">
+                <div class="alert-container">
+                    <div class="alert-icon">
+                        <i class="fa fa-check"></i>
+                    </div>
+
+                    <b class="alert-info"></b> {{msg}}
+                </div>
+            </div>
+    {% empty %}
+
+    {% endfor %}
+    
+    <div class="single-product-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">                    
+                    <div class="single-sidebar">
+                        <h2 style="color:#000000;" class="sidebar-title">{% trans "Vu récemment" %}</h2>
+                        {% for recent_views in recent_views_product %}
+                        <div class="thubmnail-recent">
+                            <img style="width:100px;height:100px;object-fit:cover;border-radius: 25%;" src="{{recent_views.image.url}}" class="recent-thumb" alt="">
+                            <h2><a href="{% url 'detail' recent_views.slug %}">{{recent_views.title}}</a></h2>
+                            <div class="product-sidebar-price">
+                                {% if recent_views.new_price > 0 %}
+                                <ins style="color:#800080;">DA{{recent_views.new_price|floatformat:'2'}}</ins> <del>DA {{recent_views.price|floatformat:'2'}}</del>
+                                {% else %}
+                                <ins style="color:#800080;">DA{{recent_views.price|floatformat:'2'}}</ins>
+                                {% endif %}
+                            </div>                             
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+
+                </div>
+                
+                <div class="col-md-8">
+                    <div class="product-content-right">
+                        <div class="product-breadcroumb">
+                            <a style="color:#8a2be2;" href="{% url 'home' %}">{% trans "Home" %}</a>
+                            <a style="color:#8a2be2;" href="">{{single_product.catigory}}</a>
+                            <a style="color:#8a2be2;">{{single_product.title}}</a>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="product-images">
+                                    <div  style="width: 200px;" class="product-main-img">
+                                        <img style="height: 300px;object-fit: cover;" src="{{single_product.image.url}}" alt="">
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-6">
+                                <div class="product-inner">
+                                    <h2 class="product-name">{{single_product.title}}</h2>
+                                    <div class="product-inner-price">
+                                        {% if single_product.new_price > 0 %}
+                                        <ins style="color:#800080;">DA{{single_product.new_price|floatformat:'2'}}</ins> <del>DA {{single_product.price|floatformat:'2'}}</del>
+                                        {% else %}
+                                        <ins style="color:#800080;">DA{{single_product.price|floatformat:'2'}}</ins>
+                                        {% endif %}
+                                    </div>    
+                                    
+                                    <form action="" class="cart">
+                                        <div class="quantity">
+                                            <input style="border-color:#8a2be2;" type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
+                                        </div>
+                                        <a href="{% url 'add_to_cart' single_product.slug  %}" style="background-color:#8a2be2;" class="add_to_cart_button" type="submit">{% trans "Add to cart" %}</a>
+                                    </form>   
+                                    
+                                    <div class="product-inner-category">
+                                        <p>{% trans "Category" %}: <a style="color:#8a2be2;" href="">{{single_product.catigory}}</a>
+                                    </div> 
+                                    
+                                    <div role="tabpanel">
+                                        <ul class="product-tab" role="tablist">
+                                            <li style="background-color:#8a2be2;" role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">{% trans "Description" %}</a></li>
+                                            <li style="background-color:#8a2be2;" role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">{% trans "Reviews" %}</a></li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div role="tabpanel" class="tab-pane fade in active" id="home">
+                                                <h2>{% trans "Product Description" %}</h2>  
+                                                <p style="overflow-wrap: break-word;">{{single_product.description}}</p>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="profile">
+                                                <h2>{% trans "Reviews" %}</h2>
+                                                <form method="POST" class="submit-review">
+                                                    {% csrf_token %}
+
+
+
+                                                    {{new_comment.as_p}}
+
+                                                    <p><input style="background-color:#8a2be2;" type='submit' value='Submit'></p>
+                                                </form>
+
+                                                {% for comment in comments %}
+                                                <hr>
+                                                <div style="background-color: aliceblue;padding: 10px;" role="tabpanel" class="tab-pane fade in active" id="home">
+                                                    
+                                                    <h2>{{comment.name}} <span style="font-size: 1.3rem;color: gray;">commente le {{comment.date_c|date:'d/m/Y'}}</span> </h2> 
+                                                    <p style="overflow-wrap: break-word;">{{comment.body}}</p>
+                                                </div>
+                                                <hr>
+                                                {% empty %}
+                                                <h3 style="padding-top:2rem;">{% trans "No comments" %}</h3>
+                                                {% endfor %}
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="related-products-wrapper">
+                            <h2 style="color:#000000;" class="related-products-title">{% trans "Related Products" %}</h2>
+                            <div class="related-products-carousel">
+                                {% for related_products in related_product %}
+                                <div class="single-product">
+                                    <div class="product-f-image">
+                                        <img style="height: 300px;object-fit: cover;" src="{{related_products.image.url}}" alt="">
+                                        <div class="product-hover">
+                                            <a style="background-color:#8a2be2;" href="{% url 'detail' related_products.slug %}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                        </div>
+                                    </div>
+
+                                    <h2><a style="color:#000000;" href="{% url 'detail' related_products.slug %}">{{related_products.title}}</a></h2>
+
+                                    <div class="product-carousel-price">
+                                        {% if related_products.new_price > 0 %}
+                                        <ins style="color:#800080;">DA{{related_products.new_price|floatformat:'2'}}</ins> <del>DA {{related_products.price|floatformat:'2'}}</del>
+                                        {% else %}
+                                        <ins style="color:#800080;">DA{{related_products.price|floatformat:'2'}}</ins>
+                                        {% endif %}                                    </div> 
+                                        <div class="product-option-shop">
+                                            <a href="{% url 'add_to_cart' related_products.slug %}" style="background-color:#8a2be2;" class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow">{% trans "Add to cart" %}</a>
+                                        </div>                                  </div>
+
+                                {% empty %}
+                                <h3>{% trans "No related Product" %}</h3>
+                                {% endfor %}
+                              
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+<style>
+
+.heading {
+    margin: 0 0 50px;
+    text-align: center;
+}
+
+.section {
+    padding: 50px 0;
+    width: 50%;
+    margin: auto;
+}
+
+.section .alert:not(:first-child) {
+    margin-top: 15px;
+}
+
+.alert {
+    padding: 15px 20px;
+}
+
+.alert .alert-icon {
+    float: left;
+    margin-right: 20px;
+}
+
+
+/* Styling the info alert */
+
+.alert .alert-info {
+    margin: 0 10px 0 0;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.alert .alert-container {
+    position: relative;
+    margin: 0 auto;
+    color: white;
+}
+
+
+/* Creating the close icon */
+
+.alert .close-icon {
+    float: right;
+    color: #000;
+    margin-top: 0;
+    margin-left: 0;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.alert .close-icon:before,
+.alert .close-icon:after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    width: 15px;
+    height: 2px;
+    left: 0;
+}
+
+.alert .close-icon:before {
+    background-color: #fff;
+    transform: rotate(-45deg);
+}
+
+.alert .close-icon:after {
+    background-color: #fff;
+    transform: rotate(45deg);
+}
+
+
+/* Styling the standard alert */
+
+.alert.alert-custom {
+    background-color: #66615b;
+    border: 1px solid #66615b;
+    padding: 15px 20px;
+}
+
+.alert.alert-custom .alert-icon {
+    float: left;
+    margin-right: 15px;
+}
+
+.alert.alert-custom .alert-info {
+    margin: 0 10px 0 0;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.alert.alert-custom .alert-container {
+    position: relative;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.alert.alert-custom .close-icon {
+    float: right;
+    color: #000;
+    margin-top: 0;
+    margin-left: 0;
+    width: 21px;
+    height: 21px;
+    position: relative;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    text-indent: -999px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.alert.alert-custom .close-icon:before,
+.alert.alert-custom .close-icon:after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    width: 15px;
+    height: 2px;
+    left: 0;
+}
+
+.alert.alert-custom .close-icon:before {
+    background-color: #fff;
+    transform: rotate(-45deg);
+}
+
+.alert.alert-custom .close-icon:after {
+    background-color: #fff;
+    transform: rotate(45deg);
+}
+
+.alert.alert-info {
+    background-color: #0b5bb1;
+    border: 1px solid #0b5bb1;
+    padding: 15px 20px;
+    color: white;
+}
+
+.alert.alert-info .alert-icon {
+    float: left;
+    margin-right: 15px;
+}
+
+.alert.alert-info .alert-info {
+    margin: 0 10px 0 0;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 14px;
+    color: white;
+}
+
+.alert.alert-info .alert-container {
+    position: relative;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.alert.alert-info .close-icon {
+    float: right;
+    color: #000;
+    margin-top: 0;
+    margin-left: 0;
+    width: 21px;
+    height: 21px;
+    position: relative;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    text-indent: -999px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.alert.alert-info .close-icon:before,
+.alert.alert-info .close-icon:after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    width: 15px;
+    height: 2px;
+    left: 0;
+}
+
+.alert.alert-info .close-icon:before {
+    background-color: #fff;
+    transform: rotate(-45deg);
+}
+
+.alert.alert-info .close-icon:after {
+    background-color: #fff;
+    transform: rotate(45deg);
+}
+
+
+/* Styling the success alert */
+
+.alert.alert-success {
+    background-color: #8bc34a;
+    border: 1px solid #8bc34a;
+    padding: 15px 20px;
+    color: white;
+}
+
+.alert.alert-success .alert-icon {
+    float: left;
+    margin-right: 15px;
+}
+
+.alert.alert-success .alert-info {
+    margin: 0 10px 0 0;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.alert.alert-success .alert-container {
+    position: relative;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.alert.alert-success .close-icon {
+    float: right;
+    color: #000;
+    margin-top: 0;
+    margin-left: 0;
+    width: 21px;
+    height: 21px;
+    position: relative;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    text-indent: -999px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.alert.alert-success .close-icon:before,
+.alert.alert-success .close-icon:after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    width: 15px;
+    height: 2px;
+    left: 0;
+}
+
+.alert.alert-success .close-icon:before {
+    background-color: #fff;
+    transform: rotate(-45deg);
+}
+
+.alert.alert-success .close-icon:after {
+    background-color: #fff;
+    transform: rotate(45deg);
+}
+
+
+/* Styling the warning alert */
+
+.alert.alert-warning {
+    background-color: #f87d09;
+    border: 1px solid #f87d09;
+    padding: 15px 20px;
+    color: white;
+}
+
+.alert.alert-warning .alert-icon {
+    float: left;
+    margin-right: 15px;
+}
+
+.alert.alert-warning .alert-info {
+    margin: 0 10px 0 0;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.alert.alert-warning .alert-container {
+    position: relative;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.alert.alert-warning .close-icon {
+    float: right;
+    color: #000;
+    margin-top: 0;
+    margin-left: 0;
+    width: 21px;
+    height: 21px;
+    position: relative;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    text-indent: -999px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.alert.alert-warning .close-icon:before,
+.alert.alert-warning .close-icon:after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    width: 15px;
+    height: 2px;
+    left: 0;
+}
+
+.alert.alert-warning .close-icon:before {
+    background-color: #fff;
+    transform: rotate(-45deg);
+}
+
+.alert.alert-warning .close-icon:after {
+    background-color: #fff;
+    transform: rotate(45deg);
+}
+
+
+/* Styling the danger alert */
+
+.alert.alert-danger {
+    background-color: #e91e63;
+    border: 1px solid #e91e63;
+    padding: 15px 20px;
+    color: white;
+}
+
+.alert.alert-danger .alert-icon {
+    float: left;
+    margin-right: 15px;
+}
+
+.alert.alert-danger .alert-info {
+    margin: 0 10px 0 0;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.alert.alert-danger .alert-container {
+    position: relative;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.alert.alert-danger .close-icon {
+    float: right;
+    color: #000;
+    margin-top: 0;
+    margin-left: 0;
+    width: 21px;
+    height: 21px;
+    position: relative;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    text-indent: -999px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.alert.alert-danger .close-icon:before,
+.alert.alert-danger .close-icon:after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    width: 15px;
+    height: 2px;
+    left: 0;
+}
+
+.alert.alert-danger .close-icon:before {
+    background-color: #fff;
+    transform: rotate(-45deg);
+}
+
+.alert.alert-danger .close-icon:after {
+    background-color: #fff;
+    transform: rotate(45deg);
+}
+</style>
+
+
+    {% endblock %}
+   

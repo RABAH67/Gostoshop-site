@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}Shop Page{% endblock title %}
+
+
+    
+
+    
+{% block content %}
+    
+
+    
+<div class="container">
+    <form method='get' action="{% url 'ShopNew' %}" style="padding:3rem;" > 
+        <input style="width:900px;height:60px;border-color:#8a2be2" type="text" name="queiry" value="{{query}}" placeholder="{% trans 'Search for' %} {{Productcount}} {% trans 'products...' %}"> 
+        <button style="background-color:#8a2be2;height:60px;" type="submit">{% trans "Search" %}</button>
+    </form>
+</div>
+
+
+{% for msg in messages %}
+{% if pp == 0 %}
+<h2 style="margin-left:15rem;color:#ffd900;font-size:2.5rem;">{% trans "Product Not Found" %} {{msg}}</h2>
+{% else %}
+<h2 style="margin-left:15rem;color:#ffd900;font-size:2.5rem;">{{pp}} {% trans "result" %} {{msg}}</h2>
+{% endif %}
+{% endfor %}
+
+
+    <div class="single-product-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                {% for product in allproduct %}
+                <div class="col-md-3 col-sm-6">
+                    <div class="single-shop-product">
+                        <div class="product-upper">
+                            <img style="height: 400px;object-fit: cover; width:300px;" src="{{product.image.url}}" alt="">
+                        </div>
+                        <h2><a style="color:#000000;" href="{% url 'detail' product.slug %}">{{product.title}}</a></h2>
+                        <div class="product-carousel-price">
+                            {% if product.new_price > 0 %}
+                            <ins style="color:#800080;">DA{{product.new_price|floatformat:'2'}}</ins> <del>DA {{product.price|floatformat:'2'}}</del>
+                            {% else %}
+                            <ins style="color:#800080;">DA{{product.price|floatformat:'2'}}</ins>
+                            {% endif %}                        </div>  
+                        
+                        <div class="product-option-shop">
+                            <a style="background-color:#8a2be2;" class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="{% url 'add_to_cart' product.slug  %}">{% trans "Add to cart" %}</a>
+                        </div>                       
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-pagination text-center">
+                        <nav>
+                        {% if allproduct.has_other_pages %}
+                          <ul class="pagination">
+                            <li>
+                                {% if allproduct.has_previous %}
+                              <a style="background-color:#800080;color:#000000;" href="?page={{allproduct.previous_page_number}}" aria-label="Precedent">
+                                <span aria-hidden="true">&laquo;</span>
+                              </a>
+                                {% endif %}
+                            </li>
+                                {% for i in allproduct.paginator.page_range %}
+                                    <li><a style="background-color:#800080;color:#000000;" href="?page={{i}}">{{i}}</a></li>
+                                {% endfor %}
+                            <li>
+                                {% if allproduct.has_next %}
+                              <a style="background-color:#800080;color:#000000;" href="?page={{allproduct.next_page_number}}" aria-label="Suivant">
+                                <span aria-hidden="true">&raquo;</span>
+                              </a>
+                                {% endif %}
+                            </li>
+                          </ul>
+                        {% endif %}
+                        </nav>                        
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <script>
+
+    </script>
+
+    {% endblock content %}

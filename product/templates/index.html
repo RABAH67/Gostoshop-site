@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load catigory %}
+{% load i18n %}
+{% block title %}Home{% endblock title %}
+
+
+
+
+    {% block content %}
+     
+
+
+
+    
+    <div class="slider-area">
+        	<!-- Slider -->
+			<div class="block-slider block-slider4">
+				<ul class="" id="bxslider-home4">
+                    {% for slider in slide %}
+					<li><img src="{{slider.image.url}}" alt="Slide">
+						<div class="caption-group">
+							<h2 class="caption title">
+								{{slider.title}}<span style="color:#8a2be2;margin:2rem;"  class="primary">{{slider.Promontion}}% <strong>off</strong></span>
+							</h2>
+							<h4 class="caption subtitle">{{slider.body}}</h4>
+							<a class="caption button-radius" href="{% url 'ShopNew' %}"><span class="icon"></span>Shop now</a>
+						</div>
+					</li>
+                    {% endfor %}
+				</ul>
+			</div>
+			<!-- ./Slider -->
+    </div> <!-- End slider area -->
+    
+
+    
+    <div class="maincontent-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="latest-product">
+                        <h2 style="color:#000000;" class="section-title">{% trans "Meilleures Offres" %}</h2>
+                        <hr class="hr">
+                        <div class="product-carousel">
+                            {% for product in products %}
+                            <div class="single-product">
+                                <div class="product-f-image">
+                                    {% if product.image %}
+                                    <img style="height: 300px;object-fit: cover;" src="{{product.image.url}}" alt="">
+                                    {% else %}
+                                    <img src="{% static 'img/error.png' %}" alt="">
+                                    {% endif %}
+                                    <div class="product-hover">
+                                        <a style="background-color:#8a2be2;" href="{% url 'detail' product.slug %}" class="view-details-link"><i class="fa fa-link"></i> {% trans "See details" %}</a>
+                                    </div>
+                                </div>
+                                
+                                <h2><a href="{% url 'detail' product.slug %}">{{product.title}}</a></h2>
+                                
+                                <div class="product-carousel-price">
+                                    {% if product.new_price > 0 %}
+                                    <ins style="color:#800080;">DA{{product.new_price|floatformat:'2'}}</ins> <del >DA {{product.price|floatformat:'2'}}</del>
+                                    {% else %}
+                                    <ins style="color:#800080;">DA{{product.price|floatformat:'2'}}</ins>
+                                    {% endif %}
+                                </div> 
+                                <div class="product-option-shop">
+                                    <a  style="background-color:#8a2be2;" class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="{% url 'add_to_cart' product.slug  %}">{% trans "Add to cart" %}</a>
+                                </div>  
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End main content area -->
+    
+    <hr>
+    
+    <div class="product-widget-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="single-product-widget">
+                        <h2 style="color:#000000;" class="product-wid-title">{% trans "Top Catigory" %}</h2>
+                        <a style="background-color:#8a2be2;" href="{% url 'ShopNew' %}" class="wid-view-more">{% trans "View All" %}</a>
+                        {% cat1 %}
+                    </div>
+                </div>
+
+
+                <div class="col-md-4">
+                    <div class="single-product-widget">
+                        <h2 style="color:#000000;" class="product-wid-title">{% trans "Ordered" %}</h2>
+                        <a style="background-color:#8a2be2;" href="{% url 'ShopNew' %}" class="wid-view-more">{% trans "View All" %}</a>
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-4">
+                    <div class="single-product-widget">
+                        <h2 style="color:#000000;font-width:600;" class="product-wid-title">{% trans "Best Offre" %}</h2>
+                        <a style="background-color:#8a2be2;" href="{% url 'ShopNew' %}" class="wid-view-more">{% trans "View All" %}</a>
+            
+                            {% Bestofre %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End product widget area -->
+    {% endblock %}
+    
+
+    
+
+   

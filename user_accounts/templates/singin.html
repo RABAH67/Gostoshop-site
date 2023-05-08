@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}   
+{% load i18n %}
+{% block title %}Sing Up{% endblock title %}
+
+    
+
+    {% block content %}
+
+
+    
+
+
+    <div class="single-product-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+
+                    
+
+                    
+
+                </div>
+                
+                <div class="col-md-8">
+                    <div class="product-content-right">
+                        <div class="woocommerce">
+
+
+
+
+
+
+                            <div id="customer_details" class="col2-set">
+                                <div class="col-1">
+                                    <div class="woocommerce-billing-fields">
+
+
+                                        <form  method="POST" novalidate>
+                                            {% csrf_token %}
+                                            {% for fm in form %}
+                                            {{fm.label_tag}} {{fm}}
+                                            {% endfor %}
+
+                                            <div class="product-option-shop">
+                                                <button style="background-color:#8a2be2;margin:3rem  0 3rem ;" type="submit" style="margin:3rem;margin-left:0rem;" class="add_to_cart_button" >{% trans "Submit" %}</button>
+                                            </div> 
+                                            
+
+                                            {% if form.non_field_errors %}
+                                            {% for error in form.non_field_errors %}
+                                            <div style="width:700px;" class="woocommerce-info">! {{error}}</a>
+                                            </div>
+                                            {% endfor %} 
+                                        {% endif %}
+                        
+                                        {% if messages %}
+                                        {% for msg in messages %}
+                                        <div style="width:700px;" class="woocommerce-info">! {{msg}}</a>
+                                        </div>
+                                        {% endfor %}
+                                        {% endif %} 
+
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+                                         
+
+                            </form>
+
+                        </div>                       
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <style>
+        .oo ,p{
+
+            width:360px;
+            margin:0.5rem;
+        }
+    </style>
+    {% endblock content %}
+  

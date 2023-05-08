@@ -1,0 +1,174 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-06 00:46-0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: .\templates\base.html:48
+msgid "My Cart"
+msgstr "عربة التسوق الخاصة بي"
+
+#: .\templates\base.html:49 .\templates\base.html:131
+msgid "Checkout"
+msgstr "الدفع"
+
+#: .\templates\base.html:50
+msgid "Logout"
+msgstr "تسجيل خروج"
+
+#: .\templates\base.html:52
+msgid "Login"
+msgstr "تسجيل الدخول"
+
+#: .\templates\base.html:53
+msgid "Sing Up"
+msgstr "التسجيل"
+
+#: .\templates\base.html:99 .\templates\base.html:130
+msgid "Cart"
+msgstr "عربة التسوق"
+
+#: .\templates\base.html:99
+msgid "DA"
+msgstr "دج"
+
+#: .\templates\base.html:128 .\templates\single-product.html:58
+msgid "Home"
+msgstr "رئيسية"
+
+#: .\templates\base.html:129
+msgid "Shop page"
+msgstr "صفحة المتجر"
+
+#: .\templates\base.html:169
+msgid "Support"
+msgstr "دعم"
+
+#: .\templates\base.html:171 .\templates\base.html:180
+msgid ""
+"dvd\\sb edgESDGREG wrwRGdvd\\sb edgESDGREG wrwRGdvd\\sb edgESDGREG wrwRG"
+msgstr ""
+"كمبيوتر كمبيوتر كمبيوتر كمبيوتر كمبيوتر كمبيوتر كمبيوتر كمبيوتر كمبيوتر "
+"كمبيوتر كمبيوتر"
+
+#: .\templates\base.html:178
+msgid "Payments"
+msgstr "دفع"
+
+#: .\templates\base.html:187
+msgid "About"
+msgstr "حول"
+
+#: .\templates\base.html:188
+msgid ""
+"Computer ComputerComputer ComputerComputer ComputerComputer ComputerComputer "
+"ComputerComputer Computer"
+msgstr "كمبيوتر كمبيوتر كمبيوتكمبيوتر كمبيوتر كمبيوتكمبيوتر كمبيوتر كمبيوت"
+
+#: .\templates\index.html:44
+msgid "Meilleures Offres"
+msgstr "أفضل العروض"
+
+#: .\templates\index.html:56
+msgid "See details"
+msgstr "انظر التفاصيل"
+
+#: .\templates\index.html:70 .\templates\shop.html:50
+#: .\templates\single-product.html:88 .\templates\single-product.html:158
+msgid "Add to cart"
+msgstr "أضف إلى السلة"
+
+#: .\templates\index.html:90
+msgid "Top Catigory"
+msgstr "أعلى فئة"
+
+#: .\templates\index.html:91 .\templates\index.html:100
+#: .\templates\index.html:116
+msgid "View All"
+msgstr "مشاهدة الكل"
+
+#: .\templates\index.html:99
+msgid "Ordered"
+msgstr "طلب"
+
+#: .\templates\index.html:115
+msgid "Best Offre"
+msgstr "العرض الأخير"
+
+#: .\templates\shop.html:16
+#, fuzzy
+#| msgid "Search"
+msgid "Search for"
+msgstr "بحث"
+
+#: .\templates\shop.html:16
+msgid "products..."
+msgstr "منتجات..."
+
+#: .\templates\shop.html:17
+msgid "Search"
+msgstr "بحث"
+
+#: .\templates\shop.html:24
+#, fuzzy
+#| msgid "Product Description"
+msgid "Product Not Found"
+msgstr "الصنف غير موجود"
+
+#: .\templates\shop.html:26
+msgid "result"
+msgstr "نتيجة"
+
+#: .\templates\single-product.html:36
+msgid "Vu récemment"
+msgstr "شوهدت مؤخرا"
+
+#: .\templates\single-product.html:92
+#, fuzzy
+#| msgid "Top Catigory"
+msgid "Category"
+msgstr " فئة"
+
+#: .\templates\single-product.html:97
+msgid "Description"
+msgstr "وصف"
+
+#: .\templates\single-product.html:98 .\templates\single-product.html:106
+msgid "Reviews"
+msgstr "المراجعات"
+
+#: .\templates\single-product.html:102
+msgid "Product Description"
+msgstr "وصف المنتج"
+
+#: .\templates\single-product.html:126
+msgid "No comments"
+msgstr "بدون تعليقات"
+
+#: .\templates\single-product.html:138
+msgid "Related Products"
+msgstr "منتجات ذات صله"
+
+#: .\templates\single-product.html:162
+msgid "No related Product"
+msgstr "لا يوجد منتج ذو صلة"
+
+#~ msgid "المدفوعات"
+#~ msgstr ""
+#~ "كمبيوتر كمبيوتر كمبيوتر كمبيوتر كمبيوتر كمبيوتر كمبيوتر كمبيوتر كمبيوتر "
+#~ "كمبيوتر كمبيوتر"

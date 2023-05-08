@@ -1,0 +1,18 @@
+
+{% for prd in ofre %}
+{% if prd.new_price > 0 %}
+
+<div class="single-wid-product">
+    <a href="{% url 'detail' prd.slug %}"><img style="width:100px;height:100px;object-fit:cover;border-radius: 10%;" src="{{prd.image.url}}" alt="" class="product-thumb"></a>
+    <h2><a href="{% url 'detail' prd.slug %}">{{prd.title}}</a></h2>
+
+    <div class="product-wid-price">
+        {% if prd.new_price > 0 %}
+        <ins style="color:#800080;">DA{{prd.new_price|floatformat:'2'}}</ins> <del>DA {{prd.price|floatformat:'2'}}</del>
+        {% else %}
+        <ins style="color:#800080;">DA{{prd.price|floatformat:'2'}}</ins>
+        {% endif %}    </div>                            
+</div>
+
+{% endif %}
+{% endfor %}

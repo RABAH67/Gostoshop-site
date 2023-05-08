@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load static %}   
+{% load i18n %}
+{% block title %}
+{% if request.user.is_authenticated %}
+{{request.user|title}} | Cart
+{% else %}
+Cart
+{% endif %}
+{% endblock title %}
+
+
+
+
+
+    {% block content %}
+
+
+    
+    <div class="single-product-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+
+                    
+                    <div class="single-sidebar">
+                        <h2 style="color:#000000;" class="sidebar-title">{% trans "Products" %}</h2>
+                        {% for recent_views in oo %}
+                        <div class="thubmnail-recent">
+                            <img style="width:100px;height:100px;object-fit:cover;border-radius: 25%;" src="{{recent_views.image.url}}" class="recent-thumb" alt="">
+                            <h2><a href="{% url 'detail' recent_views.slug %}">{{recent_views.title}}</a></h2>
+                            <div class="product-sidebar-price">
+                                {% if recent_views.new_price > 0 %}
+                                <ins style="color:#800080;">DA{{recent_views.new_price|floatformat:'2'}}</ins> <del>DA {{recent_views.price|floatformat:'2'}}</del>
+                                {% else %}
+                                <ins style="color:#800080;">DA{{recent_views.price|floatformat:'2'}}</ins>
+                                {% endif %}
+                            </div>                             
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+
+                </div>
+                
+                <div class="col-md-8">
+                    <div class="product-content-right">
+                        <div class="woocommerce">
+                            <form method="post" action="#">
+                                <table cellspacing="0" class="shop_table cart">
+                                    <thead>
+                                        <tr>
+                                            <th class="product-remove">&nbsp;X</th>
+                                            <th class="product-thumbnail">&nbsp;{% trans "Image" %}</th>
+                                            <th class="product-name">{% trans "Product" %}</th>
+                                            <th class="product-price">{% trans "Price" %}</th>
+                                            <th class="product-quantity">{% trans "Quantity" %}</th>
+                                            <th class="product-subtotal">{% trans "Total" %}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        {% for item in cart.items.all %}
+                                        <tr class="cart_item">
+                                            <td class="product-remove">
+                                                <a style="color:#8a2be2;" title="Remove this item" class="remove" href="{% url 'add_to_cart' item.product.slug  %}">×</a>
+                                            </td>
+
+                                            <td class="product-thumbnail">
+                                                <a href="{% url 'detail' item.product.slug %}"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="{{item.product.image.url}}"></a>
+                                            </td>
+
+                                            <td class="product-name">
+                                                <a href="{% url 'detail' item.product.slug %}">{{item.product.title}}</a> 
+                                            </td>
+
+                                            <td class="product-price">
+                                                <span class="amount">{{item.product.price|floatformat:'2'}} DA</span> 
+                                            </td>
+
+                                            <td class="product-quantity">
+                                                <div class="quantity buttons_added">
+                                                    <input style="background-color:#8a2be2;" type="button" class="minus" value="-">
+                                                    <input style="border-color:#8a2be2;" type="number" size="4" class="input-text qty text" title="Qty" value="{{item.quentity}}" min="0" step="1">
+                                                    <input style="background-color:#8a2be2;" type="button" class="plus" value="+">
+                                                </div>
+                                            </td>
+
+                                            <td class="product-subtotal">
+                                                <span class="amount">{{item.total_panie|floatformat:'2'}}</span> 
+                                            </td>
+
+                                        </tr>
+
+                                        {% endfor %}
+
+                                        <tr>
+                                            <td class="actions" colspan="6">
+                                                <div class="coupon">
+                                                    <label for="coupon_code">{% trans "Coupon" %}:</label>
+                                                    <input  type="text" placeholder="{% trans 'Coupon code' %}" value="" id="coupon_code" class="input-text" name="coupon_code">
+                                                    <input style="background-color:#8a2be2;" type="submit" value="{% trans 'Apply Coupon' %}" name="apply_coupon" class="button">
+                                                </div>
+                                                <input style="background-color:#8a2be2;" type="submit" value="{% trans 'Checkout' %}" name="proceed" class="checkout-button button alt wc-forward">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+
+                            <div class="cart-collaterals">
+
+
+
+
+
+                            <div class="cart_totals ">
+                                <h2 style="color:#800080;">{% trans "Cart Totals" %}</h2>
+
+                                <table cellspacing="0">
+                                    <tbody>
+
+
+                                        <tr class="order-total">
+                                            <th>{% trans "Order Total" %}</th>
+                                            <td><strong><span class="amount">{{cart.total}} DA</span></strong> </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+
+
+
+                            </div>
+                        </div>                        
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    {% endblock content %}
+  

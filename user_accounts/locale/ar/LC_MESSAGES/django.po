@@ -1,0 +1,76 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-06 01:03-0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: .\templates\cart.html:28
+msgid "Products"
+msgstr "منتجات"
+
+#: .\templates\cart.html:55
+msgid "Image"
+msgstr "صورة"
+
+#: .\templates\cart.html:56
+msgid "Product"
+msgstr "منتج"
+
+#: .\templates\cart.html:57
+msgid "Price"
+msgstr "سعر"
+
+#: .\templates\cart.html:58
+msgid "Quantity"
+msgstr "كمية"
+
+#: .\templates\cart.html:59
+msgid "Total"
+msgstr "المجموع"
+
+#: .\templates\cart.html:101
+msgid "Coupon"
+msgstr "قسيمة"
+
+#: .\templates\cart.html:102
+#, fuzzy
+#| msgid "Coupon"
+msgid "Coupon code"
+msgstr "قسيمة"
+
+#: .\templates\cart.html:103
+msgid "Apply Coupon"
+msgstr "تطبيق القسيمة"
+
+#: .\templates\cart.html:105
+msgid "Checkout"
+msgstr "الدفع"
+
+#: .\templates\cart.html:119
+msgid "Cart Totals"
+msgstr "إجماليات سلة التسوق"
+
+#: .\templates\cart.html:126
+#, fuzzy
+#| msgid "Cart Totals"
+msgid "Order Total"
+msgstr "الطلب الكلي"
+
+#: .\templates\login.html:44 .\templates\singin.html:47
+msgid "Submit"
+msgstr "تسجيل"
