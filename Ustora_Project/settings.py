@@ -14,6 +14,10 @@ from pathlib import Path
 import os 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -24,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-r(_p82+h+y2sf_+3q_q_h1uejr#lpxz4i&wvgvb7cigf+2u@1u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -82,7 +86,7 @@ WSGI_APPLICATION = 'Ustora_Project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -92,6 +96,14 @@ DATABASES = {
         'HOST': 'localhost', 
         'PORT': '5432',
     }
+}
+'''
+import dj_database_url
+
+
+DATABASES = {
+    
+    'default':dj_database_url.parse(env('DATABASE_URL'))
 }
 
 

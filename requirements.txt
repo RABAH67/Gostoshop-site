@@ -5,6 +5,7 @@ colorama==0.4.6
 distlib==0.3.6
 dj-database-url==2.0.0
 Django==4.2
+django-environ==0.10.0
 django-extensions==3.2.1
 django-heroku==0.3.1
 django-phone-field==1.8.1
@@ -19,6 +20,7 @@ platformdirs==3.5.0
 pluggy==1.0.0
 psycopg==3.1.9
 psycopg2==2.9.6
+psycopg2-binary==2.9.6
 pyproject_api==1.5.1
 python-gettext==5.0
 sqlparse==0.4.4
