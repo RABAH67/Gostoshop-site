@@ -18,6 +18,7 @@ import environ
 
 env = environ.Env()
 environ.Env.read_env()
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -28,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-r(_p82+h+y2sf_+3q_q_h1uejr#lpxz4i&wvgvb7cigf+2u@1u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
