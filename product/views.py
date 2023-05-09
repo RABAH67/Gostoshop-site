@@ -113,10 +113,10 @@ def ShopPage(request):
 
 def handel404(request,exception):
     
-    return render(request,'error_404.html')
+    return render(request,'error_404.html',status=404)
 
 
 
 def handel500(request):
     
-    return render(request,'error_500.html')
+    return render(request,'error_500.html',status=500)
