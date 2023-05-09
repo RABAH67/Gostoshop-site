@@ -108,3 +108,15 @@ def ShopPage(request):
     
     return render(request,'shop.html',context)
 
+
+
+
+def handel404(request,exception):
+    
+    return render(request,'error_404.html')
+
+
+
+def handel500(request):
+    
+    return render(request,'error_500.html')

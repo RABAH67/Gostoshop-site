@@ -21,6 +21,11 @@ environ.Env.read_env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+import cloudinary 
+import cloudinary.uploader
+import cloudinary.api
+
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -48,6 +53,7 @@ INSTALLED_APPS = [
     # My Apps
     'product',
     'user_accounts',
+    'cloudinary',
 
 ]
 
@@ -170,6 +176,14 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR,'Ustora_Project/static/'),
+)
+
+
+
+cloudinary.config(
+    cloud_name = "dwaruyzya",
+    api_key = "326851665465731",
+    api_secret = "dCReNir7O440l79dttFqjofCa4Q",
 )
 
 MEDIA_URL = 'media/'

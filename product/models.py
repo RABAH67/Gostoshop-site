@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -19,7 +20,7 @@ class Product(models.Model):
     new_price = models.DecimalField(max_digits=10, decimal_places=5,blank=True,null=True)
     catigory = models.ForeignKey('Catigory',on_delete=models.CASCADE)
     size = models.CharField(choices=sizes,max_length=50,blank=True,null=True)
-    image = models.ImageField(upload_to='product',blank=True,null=True)
+    image = CloudinaryField('image',blank=True,null=True)
     date = models.DateTimeField(auto_now_add=timezone.now)
     slug = models.SlugField(blank=True,null=True)
     
@@ -68,7 +69,7 @@ class Comment(models.Model):
 
 class MainSlider(models.Model):
     
-    image = models.ImageField(upload_to='SliderImages',blank=False,null=False)
+    image = CloudinaryField('SliderImages',blank=False,null=False)
     title = models.CharField(max_length=40,blank=False,null=False)
     body = models.CharField(max_length=40,blank=True,null=True)
     Promontion = models.PositiveIntegerField(blank=True,null=True)
